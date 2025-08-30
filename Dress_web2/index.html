@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vera - Custom Summer Dresses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Import Mea Culpa font -->
+    <link href="https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Vera word only in Mea Culpa font */
+        .logo .vera {
+            font-family: 'Mea Culpa', cursive;
+            font-size: 42px;
+            color: #d17c85;
+            font-weight: normal;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #d17c85;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('dress2image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background-color: #d17c85;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c05c67;
+        }
+        
+        /* Page Sections */
+        .page-section {
+            padding: 80px 50px;
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Shop Page */
+        .shop-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('dress3image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .shop-hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #d17c85;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #777;
+        }
+        
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 300px;
+            width: 100%;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 3rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-info p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #d17c85;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+        
+        /* About Us */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1566206091558-7f218b696731?ixlib=rb-4.0.3&auto=format&fit=crop&w=1064&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+        
+        /* Contact Us */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 50px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #d17c85;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content,
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><span class="vera">Vera</span></div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')">HOME</a></li>
+            <li><a href="#" onclick="showPage('shop')">SHOP</a></li>
+            <li><a href="#" onclick="showPage('about')">ABOUT US</a></li>
+            <li><a href="#" onclick="showPage('contact')">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page-section active">
+        <div class="hero">
+            <h1>YOUR FAVORITE NEW DRESS AWAITS!</h1>
+            <p>Discover our exquisite collection of customized summer dresses at Vera, where style meets comfort. Each piece is carefully crafted to enhance your unique beauty, ensuring you stand out during those warm sunny days. From casual outings to special occasions, our dresses are designed to make every moment memorable.</p>
+            <button class="btn" onclick="showPage('shop')">Shop Now</button>
+        </div>
+    </div>
+
+    <!-- Shop Page -->
+    <div id="shop" class="page-section">
+        <div class="shop-hero">
+            <h2>Welcome to Vera's Dress Collection</h2>
+            <p>Your go-to destination for customized summery dresses.</p>
+        </div>
+        
+        <div class="section-title">
+            <h2>Dress Categories</h2>
+            <p>Find the perfect style that suits your summer vibe.</p>
+        </div>
+        
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product">
+                <div class="product-img">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Sunflower Maxi</h3>
+                    <p>Flowy maxi dress with sunflower print, perfect for summer days.</p>
+                    <div class="price">$89.99</div>
+                    <div class="quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product">
+                <div class="product-img">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Seaside Sundress</h3>
+                    <p>Lightweight sundress with nautical stripes, ideal for beach outings.</p>
+                    <div class="price">$75.99</div>
+                    <div class="quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product">
+                <div class="product-img">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Tropical Wrap</h3>
+                    <p>Wrap dress with tropical pattern, adjustable for perfect fit.</p>
+                    <div class="price">$82.99</div>
+                    <div class="quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product">
+                <div class="product-img">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Garden Party</h3>
+                    <p>Elegant floral dress with ruffled hem, perfect for special occasions.</p>
+                    <div class="price">$95.99</div>
+                    <div class="quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <h2>FAQ</h2>
+            <p>Find answers to your most pressing questions.</p>
+        </div>
+        
+        <div class="faq-container">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(0)">
+                    What sizes do you offer?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We offer a wide range of sizes from XS to XXL. Our goal is to ensure that everyone can find the perfect fit. If you have specific sizing needs, please reach out to our customer service team for assistance.
+                </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(1)">
+                    How do I care for my dresses?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    To maintain the quality of your dresses, we recommend hand washing in cold water and laying them flat to dry. Avoid bleach and direct sunlight to preserve colors and fabrics.
+                </div>
+            </div>
+            
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(2)">
+                    Do you offer custom dresses?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, we specialize in customized designs tailored to your preferences. You can choose fabrics, colors, and styles to create a dress that truly represents your unique style.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page-section">
+        <div class="section-title">
+            <h2>About Vera</h2>
+            <p>Learn more about our story and passion for fashion</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>Vera was founded in 2015 with a simple mission: to create beautiful, high-quality summer dresses that celebrate individuality and comfort. What started as a small boutique has grown into a beloved brand known for its customized designs and attention to detail.</p>
+                <br>
+                <p>Our team of talented designers works closely with each client to create dresses that not only look stunning but feel wonderful to wear. We believe that every woman deserves to have clothing that makes her feel confident and beautiful.</p>
+                <br>
+                <p>At Vera, we're committed to sustainable practices and ethical manufacturing. All our dresses are made with care and respect for both people and the planet.</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page-section">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> EGYPT </p>
+                <p><i class="fas fa-phone"></i> 0115623489</p>
+                <p><i class="fas fa-envelope"></i> hello@veraboutique.com</p>
+                <br>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="Type your message here"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Vera</h3>
+                <p>Custom summer dresses designed to make every moment memorable.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#" onclick="showPage('home')">Home</a></p>
+                <p><a href="#" onclick="showPage('shop')">Shop</a></p>
+                <p><a href="#" onclick="showPage('about')">About Us</a></p>
+                <p><a href="#" onclick="showPage('contact')">Contact Us</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Vera Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to toggle FAQ answers
+        function toggleFaq(index) {
+            const answers = document.querySelectorAll('.faq-answer');
+            answers[index].classList.toggle('active');
+        }
+        
+        // Quantity buttons functionality
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('.quantity-input');
+                let value = parseInt(input.value);
+                
+                if (this.textContent === '+') {
+                    value++;
+                } else if (this.textContent === '-' && value > 1) {
+                    value--;
+                }
+                
+                input.value = value;
+            });
+        });
+    </script>
+</body>
+</html>
